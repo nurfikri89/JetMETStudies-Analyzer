@@ -1,0 +1,55 @@
+executable            = RunAtBatch.sh
+universe              = vanilla
+output                = BatchLog/Ana.$(SAMPLE).$(ANALYSIS).$(ClusterId).$(ProcId).out
+error                 = BatchLog/Ana.$(SAMPLE).$(ANALYSIS).$(ClusterId).$(ProcId).err
+log                   = BatchLog/Ana.$(ClusterId).log
+stream_output         = True
+stream_error          = True
+
+environment = "JOBWORKDIR=$ENV(PWD)"
+
+#+JobFlavour  = "longlunch"
+#request_cpus = 4
+#arguments    = $(SAMPLE) $(ANALYSIS) 4
+#queue SAMPLE ANALYSIS from (
+#DYJetsToLL_LO_Pythia     ZPlusJets
+#QCD_HT50to100_LO_Pythia  Dijets
+#QCD_HT100to200_LO_Pythia Dijets
+#QCD_HT200to300_LO_Pythia Dijets
+#QCD_HT300to500_LO_Pythia Dijets
+#GJets_HT-100To200_Pythia PhotonPlusJets
+#)
+#
+#+JobFlavour  = "microcentury"
+#request_cpus = 2
+#arguments    = $(SAMPLE) $(ANALYSIS) 4
+#queue SAMPLE ANALYSIS from (
+#DYJetsToLL_LO_Herwig  ZPlusJets
+#)
+#
+#+JobFlavour  = "microcentury"
+#request_cpus = 2
+#arguments    = $(SAMPLE) $(ANALYSIS) 2
+#queue SAMPLE ANALYSIS from (
+#QCD_HT50to100_LO_Herwig  Dijets
+#QCD_HT100to200_LO_Herwig Dijets
+#QCD_HT200to300_LO_Herwig Dijets
+#QCD_HT300to500_LO_Herwig Dijets
+#GJet_Pt-15To6000_Herwig  PhotonPlusJets
+#)
+
+
++JobFlavour  = "longlunch"
+request_cpus = 4
+arguments    = $(SAMPLE) $(ANALYSIS) 4
+queue SAMPLE ANALYSIS from (
+#MC23_GJet_PT-15to6000 PhotonPlusJets
+#MC23_QCD_PT-50to80 Dijets 
+)
+
++JobFlavour  = "workday"
+request_cpus = 4
+arguments    = $(SAMPLE) $(ANALYSIS) 4
+queue SAMPLE ANALYSIS from (
+MC23_DYto2L_NLO ZPlusJets
+)
