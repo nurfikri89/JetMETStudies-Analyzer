@@ -1,0 +1,43 @@
+executable            = RunAtBatch.sh
+universe              = vanilla
+output                = BatchLog/Ana.$(SAMPLE).$(ClusterId).$(ProcId).out
+error                 = BatchLog/Ana.$(SAMPLE).$(ClusterId).$(ProcId).err
+log                   = BatchLog/Ana.$(ClusterId).log
+stream_output         = True
+stream_error          = True
+
+environment = "JOBWORKDIR=$ENV(PWD)"
+
++JobFlavour  = "longlunch"
+request_cpus = 4
+arguments    = $(SAMPLE) 4
+queue SAMPLE  from (
+MC23_QCD_HT-800to1000
+MC23_QCD_HT-1000to1200
+MC23_QCD_HT-1200to1500
+MC23_QCD_HT-1500to2000
+MC23_QCD_HT-2000
+MC23BPix_QCD_HT-800to1000
+MC23BPix_QCD_HT-1000to1200
+MC23BPix_QCD_HT-1200to1500
+MC23BPix_QCD_HT-1500to2000
+MC23BPix_QCD_HT-2000
+)
+
++JobFlavour  = "workday"
+request_cpus = 4
+arguments    = $(SAMPLE) 4
+queue SAMPLE  from (
+MC23_QCD_HT-40to70
+MC23_QCD_HT-70to100
+MC23_QCD_HT-100to200
+MC23_QCD_HT-200to400
+MC23_QCD_HT-400to600
+MC23_QCD_HT-600to800
+MC23BPix_QCD_HT-40to70
+MC23BPix_QCD_HT-70to100
+MC23BPix_QCD_HT-100to200
+MC23BPix_QCD_HT-200to400
+MC23BPix_QCD_HT-400to600
+MC23BPix_QCD_HT-600to800
+)
